@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="textMain">#1D1D1D</color>
+
+    <color name="text99">#999999</color>
+    <color name="text66">#666666</color>
+    <color name="textB4">#B4B4B4</color>
+
+    <color name="textCC">#CCCCCC</color>
+
+    <color name="line">#E7E7E7</color>
+
+    <color name="blue">#466998</color>
+    <color name="savaBlue">#A3B4CC</color>
+
+    <color name="gray">#F8F8F8</color>
+
+    <color name="red">#FF0000</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="redSolid">#D73C3C</color>
+
+    <color name="redPoint">#ff001c</color>
+
+    <color name="color_white">#FFFFFF</color>
+
+    <color name="color_page_title_text">#1D1D1D</color>
+
+    <color name="color_text">#666666</color>
+    <color name="gray_bg">#F0EFF5</color>
+
+    <color name="color_text_light">#999999</color>
+
+    <color name="color_bg">#F8F8F8</color>
+
+    <color name="color_alpha_black">#66000000</color>
+
+    <color name="color_alpha_white">#66FFFFFF</color>
+
+    <color name="color_white_alpha">#E6FFFFFF</color>
+
+    <color name="color_vip">#F7CCB5</color>
+
+    <color name="color_blue_light">#A3B4CC</color>
+
+    <color name="color_black">#000000</color>
+
+    <color name="color_shadow">#0F040000</color>
+
+    <color name="color_shadow_dark">#3F040000</color>
+
+    <color name="color_ed">#EEEEED</color>
+
+    <color name="color_alpha_black_dark">#BF000000</color>
+
+    <color name="color_bg_stoke_chex">#F2F6FB</color>
+
+    <color name="color_bg_stoke_chex_point">#496B9A</color>
+
+    <color name="color_feedback_text">#F9ECE5</color>
+
+    <color name="color_splash">#222222</color>
+
+    <color name="color_btn">#1E1E1E</color>
+
+    <color name="color_btn_unable">#E7E7E7</color>
+
+    <color name="border">#AAFFFFFF</color>
+    <color name="guideline">#AAFFFFFF</color>
+    <color name="corner">@android:color/white</color>
+    <color name="surrounding_area">#B0000000</color>
+
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/ic_load_01"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/ic_load_02"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/ic_load_03"
+        android:duration="100" />
+
+    <item
+        android:drawable="@drawable/ic_load_04"
+        android:duration="100" />
+
+
+    <item
+        android:drawable="@drawable/ic_load_05"
+        android:duration="100" />
+
+
+    <item
+        android:drawable="@drawable/ic_load_06"
+        android:duration="100" />
+
+
+    <item
+        android:drawable="@drawable/ic_load_07"
+        android:duration="100" />
+
+    <item
+        android:drawable="@drawable/ic_load_08"
+        android:duration="100" />
+
+
+    <item
+        android:drawable="@drawable/ic_load_09"
+        android:duration="100" />
+
+
+    <item
+        android:drawable="@drawable/ic_load_10"
+        android:duration="100" />
+
+</animation-list>

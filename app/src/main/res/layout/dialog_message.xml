@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white_bg_rduis">
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:padding="12dp"
+        android:src="@drawable/icon_close" />
+
+    <com.hysa.auto.widget.DrawableTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="标题"
+        android:textColor="@color/textMain"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.2"
+        android:text="内容"
+        android:textColor="@color/text99"
+        android:textSize="14dp" />
+
+
+    <TextView
+        android:id="@+id/tvBtn"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_below="@+id/tvContent"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/shape_bg_black"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+</RelativeLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <attr name="SwipeBackLayoutStyle" format="reference" />
+    <!--swipeback-->
+    <declare-styleable name="SwipeBackLayout">
+        <attr name="edge_size" format="dimension" />
+        <attr name="edge_flag">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="all" value="3" />
+        </attr>
+        <attr name="shadow_left" format="reference" />
+        <attr name="shadow_right" format="reference" />
+        <attr name="shadow_bottom" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="TwinklingRefreshLayout">
+        <attr name="tr_wave_height" format="dimension" />
+        <attr name="tr_head_height" format="dimension" />
+        <attr name="tr_bottom_height" format="dimension" />
+        <attr name="tr_overscroll_height" format="dimension" />
+        <attr name="tr_enable_loadmore" format="boolean" />
+        <attr name="tr_pureScrollMode_on" format="boolean" />
+        <attr name="tr_show_overlay_refreshview" format="boolean" />
+        <attr name="tr_headerView" format="dimension" />
+        <attr name="tr_bottomView" format="dimension" />
+        <attr name="onRefreshCommand" format="reference" />
+        <attr name="onLoadMoreCommand" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="FlowTagView">
+        <attr name="lineSpacing" format="dimension" />
+        <attr name="tagSpacing" format="dimension" />
+        <!-- 是否是固定布局 -->
+        <attr name="isFixed" format="boolean" />
+        <attr name="columnSize" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="ItemLinearLayout">
+        <attr name="left_text" format="string" />
+        <attr name="rigft_text" format="string" />
+        <attr name="left_size" format="integer" />
+        <attr name="right_size" format="integer" />
+        <attr name="left_color" format="color" />
+        <attr name="right_color" format="color" />
+        <attr name="off_right" format="boolean" />
+    </declare-styleable>
+
+    <!--状态栏高度View,用于沉浸占位-->
+    <declare-styleable name="StatusBarHeightView">
+        <attr name="use_type" format="integer">
+            <enum name="use_height" value="0" />
+            <enum name="use_padding_top" value="1" />
+        </attr>
+    </declare-styleable>
+    <!--新增图片裁剪的-->
+    <declare-styleable name="CropImageView">
+
+        <attr name="guidelines">
+            <enum name="off" value="0" />
+            <enum name="onTouch" value="1" />
+            <enum name="on" value="2" />
+        </attr>
+
+        <attr name="fixAspectRatio" format="boolean" />
+        <attr name="aspectRatioX" format="integer" />
+        <attr name="aspectRatioY" format="integer" />
+
+    </declare-styleable>
+</resources>

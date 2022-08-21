@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="306dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_white_round_bg">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64px"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="30px"
+        android:gravity="center"
+        android:text="内容"
+        android:textColor="#999999"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/tvCancel"
+        android:layout_width="153dp"
+        android:layout_height="44dp"
+        android:layout_below="@+id/tvContent"
+        android:layout_marginTop="60px"
+        android:background="#F8F8F8"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tvConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_below="@+id/tvContent"
+        android:layout_marginTop="60px"
+        android:layout_toRightOf="@+id/tvCancel"
+        android:background="#1D1D1D"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+
+</RelativeLayout>

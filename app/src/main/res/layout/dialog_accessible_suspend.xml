@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:gravity="center"
+        android:text="开启权限"
+        android:textColor="@color/textMain"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="106dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="18dp"
+            android:gravity="center_vertical"
+            android:text="辅助服务权限"
+            android:textColor="@color/textMain"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvOpen"
+            android:layout_marginTop="12dp"
+            android:text="请在手机-设置-辅助功能/无障碍中,找到'云相册'并开启即可"
+            android:textColor="@color/text99"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/tvOpen"
+            android:layout_width="66dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/shape_bg_black"
+            android:gravity="center"
+            android:text="开启"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="106dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="18dp"
+            android:gravity="center_vertical"
+            android:text="悬浮窗权限"
+            android:textColor="@color/textMain"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvOpenTwo"
+            android:layout_marginTop="15dp"
+            android:text="开启云相册悬浮窗权限"
+            android:textColor="@color/text99"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/tvOpenTwo"
+            android:layout_width="66dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="开启"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+
+</LinearLayout>

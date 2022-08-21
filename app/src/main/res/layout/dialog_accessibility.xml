@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="308dp"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:text="开启权限"
+        android:textColor="@color/textMain"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginLeft="24dp"
+        android:gravity="center_vertical"
+        android:text="辅助服务权限"
+        android:textColor="@color/textMain"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:src="@drawable/pic_yd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:text="请在手机-设置-更多设置-辅助功能/无障碍中,找到'云相册'开启即可"
+        android:textColor="@color/text99"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvOpen"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shape_bg_black"
+        android:gravity="center"
+        android:text="去开启"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</LinearLayout>
