@@ -19,7 +19,6 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hyphenate.chat.EMClient;
-import com.hysa.auto.service.AutoSelectPicService;
 import com.hysa.auto.swipe.ISwipeBack;
 import com.hysa.auto.swipe.SwipeBackHelper;
 import com.hysa.auto.swipe.SwipeBackLayout;
@@ -112,7 +111,7 @@ public abstract class SwipeActivity<V extends ViewDataBinding, VM extends BaseVi
     @Override
     protected void onResume() {
         super.onResume();
-        AutoSelectPicService.needBackToApp = false;
+//        AutoSelectPicService.needBackToApp = false;
         if (mAccessDialog != null) {
             if (isShowTwoPermission) {
                 //申请两项权限时，要两项权限都通过之后才隐藏对话框

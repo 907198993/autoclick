@@ -6,12 +6,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
+import com.hysa.auto.R;
+
 import me.goldze.mvvmhabit.base.BaseFragment;
 
 public class ProblemFragment extends BaseFragment {
     @Override
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return 0;
+        return R.layout.fragment_home;
     }
 
     @Override

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 
 import com.hysa.auto.SplashActivity;
-import com.hysa.auto.service.AutoSelectPicService;
 import com.tencent.bugly.crashreport.CrashReport;
 
 /**
@@ -32,9 +31,9 @@ public class MyUncaughtExceptionHandler implements Thread.UncaughtExceptionHandl
     public void uncaughtException(Thread t, Throwable e) {
         CrashReport.postCatchedException(e);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            if (AutoSelectPicService.mService != null) {
-                AutoSelectPicService.mService.disableSelf();
-            }
+//            if (AutoSelectPicService.mService != null) {
+//                AutoSelectPicService.mService.disableSelf();
+//            }
         }
         //如果异常时在AsyncTask里面的后台线程抛出的
         //那么实际的异常仍然可以通过getCause获得

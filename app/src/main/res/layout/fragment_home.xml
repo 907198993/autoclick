@@ -12,8 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:text="自动点"
+            android:text="自动点~"
+            android:textSize="44dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/start"
+            android:layout_width="200dp"
+            android:layout_height="44dp"
+            android:layout_below="@+id/tvContent"
+            android:layout_marginTop="60px"
+            android:layout_toRightOf="@+id/tvCancel"
+            android:background="@drawable/shape_bg_black"
+            android:gravity="center"
+            android:text="开启辅助服务"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
     </LinearLayout>
 </layout>

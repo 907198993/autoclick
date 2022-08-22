@@ -18,7 +18,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import androidx.annotation.RequiresApi;
 
-import com.hysa.auto.service.AutoSelectPicService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -569,18 +568,18 @@ public class NodeUtil {
     }
 
     //循环5次查找ID
-    public static AccessibilityNodeInfo findNodeByIdArray5(AutoSelectPicService service, String[] ids) {
-        AccessibilityNodeInfo nodeInfo = null;
-        for (int i = 0; i < 5; i++) {
-            nodeInfo = findNodeByIdArray(service.getRootInActiveWindow(), ids);
-            if (nodeInfo == null) {
-                sleep(500);
-            } else {
-                return nodeInfo;
-            }
-        }
-        return nodeInfo;
-    }
+//    public static AccessibilityNodeInfo findNodeByIdArray5(AutoSelectPicService service, String[] ids) {
+//        AccessibilityNodeInfo nodeInfo = null;
+//        for (int i = 0; i < 5; i++) {
+//            nodeInfo = findNodeByIdArray(service.getRootInActiveWindow(), ids);
+//            if (nodeInfo == null) {
+//                sleep(500);
+//            } else {
+//                return nodeInfo;
+//            }
+//        }
+//        return nodeInfo;
+//    }
 
     /**
      * 点击节点（如果失败，最多点击5次）

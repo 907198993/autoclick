@@ -2,41 +2,17 @@ package com.hysa.auto.util;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hysa.auto.R;
 import com.hysa.auto.widget.CustomDialog;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Objects;
-
-import me.goldze.mvvmhabit.utils.SPUtils;
-import me.goldze.mvvmhabit.utils.StringUtils;
-import me.goldze.mvvmhabit.utils.ToastUtils;
 
 public class DialogUtil {
 

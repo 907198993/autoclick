@@ -20,19 +20,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainModel> {
     public static final String ACTION_BROADCAST_FREEZE_ACCOUNT = "com.fengnan.newzdzf.freeze_account";  //冻结账号
 
     private List<Fragment> mFragments;
-    private int[] normalIcon = {R.mipmap.server_menu_unhome,R.mipmap.server_menu_uncontact};
+    private int[] normalIcon = {R.drawable.tab_per_nor,R.drawable.tab_com_nor};
     //
-    private int[] selectIcon ={R.mipmap.server_menu_home,R.mipmap.server_menu_contact,};
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-    }
+    private int[] selectIcon ={R.drawable.tab_per_sel,R.drawable.tab_com_sel,};
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
@@ -41,13 +31,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainModel> {
 
     @Override
     public int initVariableId() {
-        return 0;
+        return BR.mainModel;
     }
 
     @Override
     public void initViewObservable() {
         super.initViewObservable();
-        initFragment();
+        mFragments = new ArrayList<>();
+        homeFragment = new HomeFragment();
+        problemFragment = new ProblemFragment();
+        mFragments.add(homeFragment);
+        mFragments.add(problemFragment);
         String[] tabText = {
                 "首页",
                 "工作",
@@ -69,8 +63,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainModel> {
                 .msgPointTextSize(8)  //数字消息中字体大小
                 .msgPointSize(16)    //数字消息红色背景的大小
                 .lineColor(Color.parseColor("#dfdfdf"))
-                .normalTextColor(Color.parseColor("#999999"))   //Tab未选中时字体颜色
-                .selectTextColor(Color.parseColor("#0189FF"))   //Tab选中时字体颜色
+                .normalTextColor(Color.parseColor("#333333"))   //Tab未选中时字体颜色
+                .selectTextColor(Color.parseColor("#333333"))   //Tab选中时字体颜色
 //                .onTabClickListener(new EasyNavigationBar.OnTabClickListener() {
 //                    @Override
 //                    public boolean onTabClickEvent(View view, int position) {
@@ -90,11 +84,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainModel> {
     private ProblemFragment problemFragment;
 
     private void initFragment() {
-        mFragments = new ArrayList<>();
-        homeFragment = new HomeFragment();
-        problemFragment = new ProblemFragment();
-        mFragments.add(homeFragment);
-        mFragments.add(problemFragment);
+
         //默认选中第一个
     }
 

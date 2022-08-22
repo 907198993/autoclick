@@ -41,7 +41,6 @@ public class SplashActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_splash);
-        SPUtils.getInstance().put("isConflict", false);
         tvService = findViewById(R.id.tvService);
         tvPolicy = findViewById(R.id.tvPolicy);
 //        tvService.setOnClickListener(new View.OnClickListener() {

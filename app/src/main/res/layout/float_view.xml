@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/small_window_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="35dp"
+    android:background="@color/black"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_single_click"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.github.customview.MyImageView
+            android:background="@mipmap/click"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+        <TextView
+            android:text="点击"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_start"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.github.customview.MyImageView
+            android:background="@mipmap/start"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+        <TextView
+            android:text="开始"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <com.github.customview.MyImageView
+        android:id="@+id/iv_close"
+        android:background="@drawable/icon_close"
+        android:layout_width="35dp"
+        android:layout_height="35dp"/>
+</LinearLayout>

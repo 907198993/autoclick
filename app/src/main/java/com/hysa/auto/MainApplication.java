@@ -1,5 +1,7 @@
 package com.hysa.auto;
 
+import android.accessibilityservice.AccessibilityService;
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.ActivityManager;
 import android.app.AppOpsManager;
 import android.app.Application;
@@ -11,25 +13,11 @@ import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.accessibility.AccessibilityManager;
 import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
-import com.hyphenate.EMConnectionListener;
-import com.hyphenate.EMError;
-import com.hyphenate.EMMessageListener;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMMessage;
-import com.hyphenate.chat.EMOptions;
-import com.hyphenate.easeui.EaseConstant;
-import com.hyphenate.easeui.EaseUI;
-import com.hyphenate.easeui.domain.EaseAvatarOptions;
-import com.hyphenate.easeui.domain.EaseUser;
-import com.hyphenate.easeui.model.EaseAtMessageHelper;
-import com.hyphenate.easeui.model.EaseNotifier;
-import com.hyphenate.easeui.utils.EaseCommonUtils;
-import com.hyphenate.easeui.utils.EaseUtils;
-import com.hyphenate.push.EMPushConfig;
-import com.hysa.auto.service.AutoSelectPicService;
+import com.hysa.auto.service.AutoClickService;
 import com.hysa.auto.util.MyUncaughtExceptionHandler;
 import com.hysa.auto.util.ThreadPoolUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -45,6 +33,7 @@ import com.tencent.bugly.beta.Beta;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import me.goldze.mvvmhabit.base.BaseApplication;
@@ -69,13 +58,11 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-
         BaseApplication.setApplication(this);
     }
 
     public void init() {
         MyUncaughtExceptionHandler.getInstance().init(this);
-
         KLog.init(true);
         try {
             Bugly.init(this, "e47210f29c", false);
@@ -358,8 +345,63 @@ public class MainApplication extends Application {
      * @param context
      * @return boolean
      */
+
+    /**
+     * 判断辅助服务是否正在运行
+     */
+    public static boolean isServiceRunning(AccessibilityService service) {
+        if (service == null) {
+            return false;
+        }
+        AccessibilityManager accessibilityManager = (AccessibilityManager) service.getSystemService(Context.ACCESSIBILITY_SERVICE);
+        AccessibilityServiceInfo info = service.getServiceInfo();
+        if (info == null) {
+            return false;
+        }
+        List<AccessibilityServiceInfo> list = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC);
+        Iterator<AccessibilityServiceInfo> iterator = list.iterator();
+
+        boolean isConnect = false;
+        while (iterator.hasNext()) {
+            AccessibilityServiceInfo i = iterator.next();
+            if (i.getId().equals(info.getId())) {
+                isConnect = true;
+                break;
+            }
+        }
+        if (!isConnect) {
+            return false;
+        }
+        return true;
+    }
+
+
+
+    public static boolean hasServicePermission(Context ct, Class serviceClass) {
+        int ok = 0;
+        try {
+            ok = Settings.Secure.getInt(ct.getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
+        } catch (Settings.SettingNotFoundException e) {
+        }
+
+        TextUtils.SimpleStringSplitter ms = new TextUtils.SimpleStringSplitter(':');
+        if (ok == 1) {
+            String settingValue = Settings.Secure.getString(ct.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+            if (settingValue != null) {
+                ms.setString(settingValue);
+                while (ms.hasNext()) {
+                    String accessibilityService = ms.next();
+                    if (accessibilityService.contains(serviceClass.getSimpleName())) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public static boolean isStartAccessibilityService(Context context) {
-        String service = context.getApplicationContext().getPackageName() + "/" + AutoSelectPicService.class.getCanonicalName();
+        String service = context.getApplicationContext().getPackageName() + "/" + AutoClickService.class.getCanonicalName();
         int ok = 0;
         try {
             ok = Settings.Secure.getInt(context.getApplicationContext().getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);
