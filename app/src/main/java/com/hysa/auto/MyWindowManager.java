@@ -5,13 +5,10 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.view.Gravity;
-import android.view.View;
 import android.view.WindowManager;
-
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.hysa.auto.util.DialogUtil;
 import com.hysa.auto.view.FloatWindowCloseView;
 import com.hysa.auto.view.FloatWindowSmallView;
+import com.hysa.auto.view.SingleClickView;
 
 public class MyWindowManager {
 
@@ -22,15 +19,18 @@ public class MyWindowManager {
 
     private static FloatWindowCloseView closeView;
 
+    private static SingleClickView singleClickView;
     /**
      * 小悬浮窗View的参数
      */
     private static WindowManager.LayoutParams smallWindowParams;
-
     /**
      *  退出弹框
      */
     private static WindowManager.LayoutParams closeWindowParams;
+
+
+    private static WindowManager.LayoutParams singleWindowParams;
 
     /**
      * 大悬浮窗View的参数
@@ -42,10 +42,6 @@ public class MyWindowManager {
      */
     private static WindowManager mWindowManager;
 
-    /**
-     * 用于获取手机可用内存
-     */
-    private static ActivityManager mActivityManager;
 
     /**
      * 创建一个小悬浮窗。初始位置为屏幕的右部中间位置。
@@ -53,7 +49,7 @@ public class MyWindowManager {
      * @param context
      *            必须为应用程序的Context.
      */
-    public static void createSmallWindow(Context context) {
+    public static void createSmallWindow(Context context ) {
         WindowManager windowManager = getWindowManager(context);
         int screenWidth = windowManager.getDefaultDisplay().getWidth();
         int screenHeight = windowManager.getDefaultDisplay().getHeight();
@@ -113,6 +109,56 @@ public class MyWindowManager {
     }
 
     /**
+     * 创建单击view
+     * @param context
+     */
+    public static void createSingleClickWindow(Context context) {
+        WindowManager windowManager = getWindowManager(context);
+        int screenWidth = windowManager.getDefaultDisplay().getWidth();
+        int screenHeight = windowManager.getDefaultDisplay().getHeight();
+        if (singleClickView == null) {
+            singleClickView = new SingleClickView(context);
+            if (singleWindowParams == null) {
+                singleWindowParams = new WindowManager.LayoutParams();
+                /** 设置参数 */
+                singleWindowParams.type = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ?
+                        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY :
+                        WindowManager.LayoutParams.TYPE_PHONE;
+
+//                smallWindowParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+                singleWindowParams.format = PixelFormat.RGBA_8888;
+                singleWindowParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+                singleWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
+                singleWindowParams.width = SingleClickView.getViewWidth(context);
+                singleWindowParams.height = SingleClickView.getViewHeight(context);
+                singleWindowParams.x = screenWidth / 2;
+                singleWindowParams.y = screenHeight/ 2;
+            }
+            smallWindow.setParams(smallWindowParams);
+            windowManager.addView(singleClickView, singleWindowParams);
+        }
+//        if (singleClickView == null) {
+//            singleClickView = new SingleClickView(context);
+//            if (singleWindowParams == null) {
+//                singleWindowParams = new WindowManager.LayoutParams();
+//                /** 设置参数 */
+//                singleWindowParams.type = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ?
+//                        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY :
+//                        WindowManager.LayoutParams.TYPE_PHONE;
+//                singleWindowParams.format = PixelFormat.RGBA_8888;
+//                singleWindowParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+//                        | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+////                closeWindowParams.gravity = Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL;
+////                closeWindowParams.width = FloatWindowSmallView.viewWidth;
+////                closeWindowParams.height = FloatWindowSmallView.viewHeight;
+////                closeWindowParams.x = screenWidth;
+////                closeWindowParams.y = screenHeight / 2;
+//            }
+//            windowManager.addView(singleClickView, singleWindowParams);
+//        }
+    }
+    /**
      * 将小悬浮窗从屏幕上移除。
      *
      * @param context
@@ -125,6 +171,17 @@ public class MyWindowManager {
             smallWindow = null;
         }
     }
+
+    public static void removeSingleClickWindow(Context context) {
+        if (singleClickView != null) {
+            WindowManager windowManager = getWindowManager(context);
+            windowManager.removeView(singleClickView);
+            singleClickView = null;
+        }
+    }
+
+
+
     public static void removeCloseWindow(Context context) {
         if (closeView != null) {
             WindowManager windowManager = getWindowManager(context);
@@ -211,20 +268,6 @@ public class MyWindowManager {
     }
 
     /**
-     * 如果ActivityManager还未创建，则创建一个新的ActivityManager返回。否则返回当前已创建的ActivityManager。
-     *
-     * @param context
-     *            可传入应用程序上下文。
-     * @return ActivityManager的实例，用于获取手机可用内存。
-     */
-    private static ActivityManager getActivityManager(Context context) {
-        if (mActivityManager == null) {
-            mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        }
-        return mActivityManager;
-    }
-
-    /**
      * 计算已使用内存的百分比，并返回。
      *
      * @param context
@@ -249,17 +292,5 @@ public class MyWindowManager {
         return "悬浮窗";
     }
 
-    /**
-     * 获取当前可用内存，返回数据以字节为单位。
-     *
-     * @param context
-     *            可传入应用程序上下文。
-     * @return 当前可用内存。
-     */
-    private static long getAvailableMemory(Context context) {
-        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-        getActivityManager(context).getMemoryInfo(mi);
-        return mi.availMem;
-    }
 
 }

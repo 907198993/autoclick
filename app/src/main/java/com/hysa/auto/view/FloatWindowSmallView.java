@@ -81,6 +81,8 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
         viewWidth = view.getLayoutParams().width;
         viewHeight = view.getLayoutParams().height;
         MyImageView close = (MyImageView) findViewById(R.id.iv_close);
+        LinearLayout singleClick = (LinearLayout) findViewById(R.id.ll_single_click);
+        singleClick.setOnClickListener(this);
         close.setOnClickListener(this);
     }
 
@@ -167,6 +169,9 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
         switch (v.getId()){
             case R.id.iv_close:
                   MyWindowManager.createDialogWindow(getContext());
+                break;
+            case R.id.ll_single_click:
+                MyWindowManager.createSingleClickWindow(getContext());
                 break;
         }
     }

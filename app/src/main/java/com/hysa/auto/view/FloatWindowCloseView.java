@@ -57,6 +57,7 @@ public class FloatWindowCloseView extends LinearLayout implements View.OnClickLi
             case R.id.tvConfirm:
                 MyWindowManager.removeSmallWindow(getContext());
                 MyWindowManager.removeCloseWindow(getContext());
+                MyWindowManager.removeSingleClickWindow(getContext());
                 break;
         }
     }

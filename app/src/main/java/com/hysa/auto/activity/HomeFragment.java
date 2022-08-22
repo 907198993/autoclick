@@ -66,7 +66,7 @@ public class HomeFragment  extends BaseFragment<FragmentHomeBinding, BaseViewMod
     @Override
     public void onResume() {
         super.onResume();
-        if (MainApplication.isStartAccessibilityService(mContext) || MainApplication.checkAlertWindowsPermission(getActivity())) {
+        if (MainApplication.isStartAccessibilityService(mContext)&& MainApplication.checkAlertWindowsPermission(getActivity())) {
             binding.start.setText("启动");
         }else{
             binding.start.setText("开启辅助服务");
