@@ -3,9 +3,13 @@ package com.hysa.auto.service;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.GestureDescription;
 import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Build;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+
 import androidx.annotation.RequiresApi;
 import com.hysa.auto.Config;
 public class MyAutoClickService extends AccessibilityService {
@@ -29,6 +33,9 @@ public class MyAutoClickService extends AccessibilityService {
 //
 //        }
     }
+
+
+
 
 
     private void MyGesture() {//仿滑动
@@ -82,6 +89,7 @@ public class MyAutoClickService extends AccessibilityService {
     protected void onServiceConnected() {
         super.onServiceConnected();
         Log.d(Config.TAG,"onServiceConnected = " );
+        SingleClickUtil.getInstance().init(this);
     }
 
 

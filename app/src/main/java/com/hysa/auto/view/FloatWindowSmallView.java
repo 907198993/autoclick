@@ -1,17 +1,20 @@
 package com.hysa.auto.view;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import androidx.annotation.RequiresApi;
+
 import com.github.customview.MyImageView;
 import com.hysa.auto.MyWindowManager;
 import com.hysa.auto.R;
 import com.hysa.auto.listener.DialogListener;
-import com.hysa.auto.service.AlipayForestMonitor;
+import com.hysa.auto.listener.SrartClickListener;
 
 import java.lang.reflect.Field;
 
@@ -48,6 +51,10 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
     private float yDownInScreen;//手指按下时在屏幕上的纵坐标的值
     private float xInView;//手指按下时在小悬浮窗的View上的横坐标的值
     private float yInView;//手指按下时在小悬浮窗的View上的纵坐标的值
+    public SrartClickListener srartClickListener;
+    public  void setSrartClickListener(SrartClickListener srartClickListener){
+        this.srartClickListener = srartClickListener;
+    }
 
     public FloatWindowSmallView(Context context) {
         super(context);
@@ -86,15 +93,29 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
                 yInScreen = event.getRawY();
                 break;
             case MotionEvent.ACTION_MOVE:
+                if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
+                    xInScreen = event.getRawX();
+                    yInScreen = event.getRawY();
+                }else{
+                    xInScreen = event.getRawX();
+                    yInScreen = event.getRawY();
+                    // 手指移动的时候更新小悬浮窗的位置
+                    mParams.x = (int) (xInScreen - xInView);
+                    mParams.y = (int) (yInScreen - yInView);
+                    windowManager.updateViewLayout(this, mParams);
+                }
+                break;
             case MotionEvent.ACTION_UP:
                 // 如果手指离开屏幕时，xDownInScreen和xInScreen相等，且yDownInScreen和yInScreen相等，则视为触发了单击事件。
                 if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
 //                    openBigWindow();
                 }else{
                     xInScreen = event.getRawX();
-                    yInScreen = event.getRawY() - getStatusBarHeight();
+                    yInScreen = event.getRawY();
                     // 手指移动的时候更新小悬浮窗的位置
-                    updateViewPosition();
+                    mParams.x = (int) (xInScreen - xInView);
+                    mParams.y = (int) (yInScreen - yInView);
+                    windowManager.updateViewLayout(this, mParams);
                 }
                 break;
             default:
@@ -116,8 +137,8 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
      * 更新小悬浮窗在屏幕中的位置。
      */
     private void updateViewPosition() {
-        mParams.x = (int) (xInScreen - xInView);
-        mParams.y = (int) (yInScreen - yInView);
+        mParams.x = (int) (xInScreen );
+        mParams.y = (int) (yInScreen );
         windowManager.updateViewLayout(this, mParams);
     }
 
@@ -151,6 +172,7 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
         return statusBarHeight;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -183,7 +205,8 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
 
                 break;
             case R.id.ll_start:
-                AlipayForestMonitor.startAlipay(getContext());
+                srartClickListener.singleClick();
+//                AlipayForestMonitor.startAlipay(getContext());
                 break;
 
         }

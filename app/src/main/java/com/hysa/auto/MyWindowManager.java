@@ -1,13 +1,18 @@
 package com.hysa.auto;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Build;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
 
+import androidx.annotation.RequiresApi;
+
+import com.hysa.auto.listener.CallBackClickListener;
 import com.hysa.auto.listener.DialogListener;
+import com.hysa.auto.listener.SrartClickListener;
+import com.hysa.auto.service.SingleClickUtil;
 import com.hysa.auto.view.FloatWindowCloseView;
 import com.hysa.auto.view.FloatWindowSmallView;
 import com.hysa.auto.view.SingleClickView;
@@ -17,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyWindowManager {
-
     /**
      * 小悬浮窗View的实例
      */
@@ -38,19 +42,13 @@ public class MyWindowManager {
     private static WindowManager.LayoutParams closeWindowParams;
     private static WindowManager.LayoutParams singleWindowParams;
     private static WindowManager.LayoutParams singleTipWindowParams;
-
     /**
      * 用于控制在屏幕上添加或移除悬浮窗
      */
     private static WindowManager mWindowManager;
-
     static List<SingleClickView> singleClickViews = new ArrayList<>();
-
     /**
      * 创建一个小悬浮窗。初始位置为屏幕的右部中间位置。
-     *
-     * @param context
-     *            必须为应用程序的Context.
      */
     public static void createSmallWindow(Context context ) {
         WindowManager windowManager = getWindowManager(context);
@@ -58,6 +56,24 @@ public class MyWindowManager {
         int screenHeight = windowManager.getDefaultDisplay().getHeight();
         if (smallWindow == null) {
             smallWindow = new FloatWindowSmallView(context);
+            smallWindow.setSrartClickListener(new SrartClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void singleClick() {
+                    singleClickViews.get(0).setVisibility(View.GONE);
+                    SingleClickUtil.clickSingle((int) singleClickViews.get(0).xInScreen, (int) singleClickViews.get(0).yInScreen, new CallBackClickListener() {
+                        @Override
+                        public void success() {
+                            singleClickViews.get(0).setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onCancelled() {
+
+                        }
+                    });
+                }
+            });
             if (smallWindowParams == null) {
                 smallWindowParams = new WindowManager.LayoutParams();
                 /** 设置参数 */

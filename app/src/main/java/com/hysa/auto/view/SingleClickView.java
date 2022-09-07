@@ -25,16 +25,14 @@ public class SingleClickView  extends View{
 
     Paint paint;
     private  int mOuterColor = Color.RED;
-
     int mCurrentStep = 1;
     Context context;
-
-    private float xInScreen;//记录当前手指位置在屏幕上的横坐标值
-    private float yInScreen;//当前手指位置在屏幕上的纵坐标值
-    private float xDownInScreen;//手指按下时在屏幕上的横坐标的值
-    private float yDownInScreen;//手指按下时在屏幕上的纵坐标的值
-    private float xInView;//手指按下时在小悬浮窗的View上的横坐标的值
-    private float yInView;//手指按下时在小悬浮窗的View上的纵坐标的值
+    public float xInScreen;//记录当前手指位置在屏幕上的横坐标值
+    public float yInScreen;//当前手指位置在屏幕上的纵坐标值
+    public float xDownInScreen;//手指按下时在屏幕上的横坐标的值
+    public float yDownInScreen;//手指按下时在屏幕上的纵坐标的值
+    public float xInView;//手指按下时在小悬浮窗的View上的横坐标的值
+    public float yInView;//手指按下时在小悬浮窗的View上的纵坐标的值
     private static int statusBarHeight;
     private WindowManager windowManager;
     private WindowManager.LayoutParams mParams;
@@ -122,6 +120,7 @@ public class SingleClickView  extends View{
                 if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
                     xInScreen = event.getRawX();
                     yInScreen = event.getRawY();
+                    //创建参数修改弹框
                     MyWindowManager.createSingleTipWindow(getContext(),this.mCurrentStep);
                 }
                 break;
