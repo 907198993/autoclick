@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:text="自动点~"
+            android:text="点~"
             android:textSize="44dp"
             android:textColor="@color/black"
             android:textStyle="bold"

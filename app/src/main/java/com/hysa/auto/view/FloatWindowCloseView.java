@@ -2,17 +2,14 @@ package com.hysa.auto.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.customview.MyImageView;
-import com.hysa.auto.MyWindowManager;
 import com.hysa.auto.R;
-
-import java.lang.reflect.Field;
+import com.hysa.auto.listener.DialogListener;
+import com.hysa.auto.widget.DrawableTextView;
 
 public class FloatWindowCloseView extends LinearLayout implements View.OnClickListener {
 
@@ -27,7 +24,6 @@ public class FloatWindowCloseView extends LinearLayout implements View.OnClickLi
     public static int viewHeight;
 
 
-
     /**
      * 用于更新小悬浮窗的位置
      */
@@ -38,26 +34,40 @@ public class FloatWindowCloseView extends LinearLayout implements View.OnClickLi
      */
     private WindowManager.LayoutParams mParams;
 
+    public DialogListener dialogListener;
+    public  void setDialogClickListner(DialogListener dialogListener){
+             this.dialogListener = dialogListener;
+    }
 
-    public FloatWindowCloseView(Context context) {
+    public FloatWindowCloseView(Context context,String title) {
         super(context);
         windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         LayoutInflater.from(context).inflate(R.layout.dialog_common, this);
         View view = findViewById(R.id.rl_close);
         viewWidth = view.getLayoutParams().width;
         viewHeight = view.getLayoutParams().height;
+        DrawableTextView titletext = (DrawableTextView) findViewById(R.id.tvTitle);
+        titletext.setText(title);
         TextView close = (TextView) findViewById(R.id.tvConfirm);
         close.setOnClickListener(this);
+        TextView cancel = (TextView) findViewById(R.id.tvCancel);
+        cancel.setOnClickListener(this);
     }
+
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.tvCancel:
+                dialogListener.cancel();
+//                MyWindowManager.removeCloseWindow(getContext());
+                break;
             case R.id.tvConfirm:
-                MyWindowManager.removeSmallWindow(getContext());
-                MyWindowManager.removeCloseWindow(getContext());
-                MyWindowManager.removeSingleClickWindow(getContext());
+                dialogListener.commit();
+//                MyWindowManager.removeSmallWindow(getContext());
+//                MyWindowManager.removeCloseWindow(getContext());
+//                MyWindowManager.removeSingleClickWindow(getContext());
                 break;
         }
     }

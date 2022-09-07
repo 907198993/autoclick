@@ -1,50 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/small_window_layout"
+<LinearLayout android:id="@+id/small_window_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:gravity="center"
-    android:layout_width="35dp"
-    android:background="@color/black"
-    android:layout_height="wrap_content">
+    android:layout_width="40dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/ll_single_click"
-        android:gravity="center"
-        android:layout_gravity="center"
+    <com.github.customview.MyLinearLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        app:my_ll_corner_radius="5dp"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        app:my_ll_solid="#000000"
+        android:alpha="0.85"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.github.customview.MyImageView
-            android:background="@mipmap/click"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
-        <TextView
-            android:text="点击"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_start"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <com.github.customview.MyImageView
-            android:background="@mipmap/start"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
-        <TextView
-            android:text="开始"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_single_click"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <com.github.customview.MyImageView
+                android:background="@mipmap/click"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+            <TextView
+                android:text="点击"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_start"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <com.github.customview.MyImageView
+                android:background="@mipmap/start"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+            <TextView
+                android:text="开始"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_clear"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <com.github.customview.MyImageView
+                android:background="@mipmap/delete"
+                android:layout_width="22dp"
+                android:layout_height="22dp"/>
+            <TextView
+                android:text="清空"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_save"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <com.github.customview.MyImageView
+                android:background="@mipmap/save"
+                android:layout_width="22dp"
+                android:layout_height="22dp"/>
+            <TextView
+                android:text="保存"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_move"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <com.github.customview.MyImageView
+                android:background="@mipmap/move"
+                android:layout_width="22dp"
+                android:layout_height="22dp"/>
+            <TextView
+                android:text="移动"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </com.github.customview.MyLinearLayout>
+
     <com.github.customview.MyImageView
         android:id="@+id/iv_close"
-        android:background="@drawable/icon_close"
+        android:background="@mipmap/close"
         android:layout_width="35dp"
         android:layout_height="35dp"/>
 </LinearLayout>

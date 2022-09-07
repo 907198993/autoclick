@@ -17,20 +17,18 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.hysa.auto.MainApplication;
 import com.hysa.auto.R;
 import com.hysa.auto.databinding.FragmentHomeBinding;
-import com.hysa.auto.service.AutoClickService;
+import com.hysa.auto.service.MyAutoClickService;
 import com.hysa.auto.service.FloatWindowService;
-import com.hysa.auto.service.TestService;
 import com.hysa.auto.util.DialogUtil;
 
 import me.goldze.mvvmhabit.base.BaseFragment;
 import me.goldze.mvvmhabit.base.BaseViewModel;
-import me.goldze.mvvmhabit.utils.SPUtils;
 import me.goldze.mvvmhabit.utils.ToastUtils;
 
 public class HomeFragment  extends BaseFragment<FragmentHomeBinding, BaseViewModel> {
     private Context mContext;
     private int REQUEST_CODE_WRITE_SETTINGS = 10000;
-    AutoClickService autoClickService;
+    MyAutoClickService myAutoClickService;
     @Override
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return R.layout.fragment_home;
@@ -68,6 +66,8 @@ public class HomeFragment  extends BaseFragment<FragmentHomeBinding, BaseViewMod
         super.onResume();
         if (MainApplication.isStartAccessibilityService(mContext)&& MainApplication.checkAlertWindowsPermission(getActivity())) {
             binding.start.setText("启动");
+//            Intent mIntent = new Intent(getActivity(), MyAutoClickService.class);
+//            getActivity().startService(mIntent);
         }else{
             binding.start.setText("开启辅助服务");
         }

@@ -25,6 +25,19 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+
+    <!--必选权限，解决安全风险漏洞，发送和注册广播事件需要调用带有传递权限的接口-->
+    <permission android:name="${applicationId}.permission.JPUSH_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
+    <permission android:name="cn.jiguang.ads.component.PERMISSION" android:protectionLevel="signature" />
+    <uses-permission android:name="cn.jiguang.ads.component.PERMISSION" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- 1.配置安装应用权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -50,7 +63,7 @@
 
 
         <service
-            android:name=".service.AutoClickService"
+            android:name=".service.MyAutoClickService"
             android:enabled="true"
             android:exported="true"
             android:label="@string/app_name"
@@ -65,6 +78,80 @@
 
 
         <service android:name=".service.FloatWindowService" />
+
+
+        <!-- Since5.0.0 Require： SDK基础核心组件，提升SDK稳定性 -->
+        <service
+            android:name="cn.jiguang.ads.app.service.UserService"
+            android:exported="false"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
+
+        <!-- Since5.0.0 Require： h5广告应用内落地页承接，提升广告体验 -->
+        <activity
+            android:name="cn.jiguang.ads.base.component.JAdActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jiguang.ads.core.component.JAdActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </activity>
+
+        <!-- Since5.0.0 Require： 拉新等广告交互组件，缺失将影响广告转化与效果 -->
+        <activity
+            android:name="cn.jiguang.ads.base.component.JTransparentActivity"
+            android:exported="false"
+            android:taskAffinity="junion.custom"
+            android:theme="@android:color/transparent">
+            <intent-filter>
+                <action android:name="cn.jiguang.ads.component.JTransparentActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </activity>
+
+        <!-- Since5.0.0 Require： SDK基础业务组件 -->
+        <provider
+            android:name="cn.jiguang.ads.base.component.JAdProvider"
+            android:authorities="${applicationId}.ads.provider"
+            android:exported="false" />
+
+        <!-- Since5.0.0 Require： 拉新类广告必须配置，提升流量转化 -->
+        <provider
+            android:name="cn.jiguang.ads.base.component.JAdFileProvider"
+            android:authorities="${applicationId}.JAdFileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/jad_file_paths" />
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.FileProvider" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </provider>
+
+        <!-- Since5.0.0 Require： SDK基础业务组件 -->
+        <receiver
+            android:name="cn.jiguang.ads.base.component.JAdReceiver"
+            android:exported="false"
+            android:permission="cn.jiguang.ads.component.PERMISSION" />
+
+        <!-- 值来自开发者平台取得的AppKey -->
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="${JPUSH_APPKEY}" />
+
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="${JPUSH_CHANNEL}" />
 
     </application>
 

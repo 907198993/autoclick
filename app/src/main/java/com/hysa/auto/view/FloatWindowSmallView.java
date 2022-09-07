@@ -7,12 +7,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.customview.MyImageView;
-import com.hysa.auto.MainApplication;
 import com.hysa.auto.MyWindowManager;
 import com.hysa.auto.R;
-import com.hysa.auto.util.DialogUtil;
+import com.hysa.auto.listener.DialogListener;
+import com.hysa.auto.service.AlipayForestMonitor;
 
 import java.lang.reflect.Field;
 
@@ -43,35 +42,12 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
      */
     private WindowManager.LayoutParams mParams;
 
-    /**
-     * 记录当前手指位置在屏幕上的横坐标值
-     */
-    private float xInScreen;
-
-    /**
-     * 记录当前手指位置在屏幕上的纵坐标值
-     */
-    private float yInScreen;
-
-    /**
-     * 记录手指按下时在屏幕上的横坐标的值
-     */
-    private float xDownInScreen;
-
-    /**
-     * 记录手指按下时在屏幕上的纵坐标的值
-     */
-    private float yDownInScreen;
-
-    /**
-     * 记录手指按下时在小悬浮窗的View上的横坐标的值
-     */
-    private float xInView;
-
-    /**
-     * 记录手指按下时在小悬浮窗的View上的纵坐标的值
-     */
-    private float yInView;
+    private float xInScreen;//记录当前手指位置在屏幕上的横坐标值
+    private float yInScreen;//当前手指位置在屏幕上的纵坐标值
+    private float xDownInScreen;//手指按下时在屏幕上的横坐标的值
+    private float yDownInScreen;//手指按下时在屏幕上的纵坐标的值
+    private float xInView;//手指按下时在小悬浮窗的View上的横坐标的值
+    private float yInView;//手指按下时在小悬浮窗的View上的纵坐标的值
 
     public FloatWindowSmallView(Context context) {
         super(context);
@@ -80,9 +56,20 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
         View view = findViewById(R.id.small_window_layout);
         viewWidth = view.getLayoutParams().width;
         viewHeight = view.getLayoutParams().height;
-        MyImageView close = (MyImageView) findViewById(R.id.iv_close);
-        LinearLayout singleClick = (LinearLayout) findViewById(R.id.ll_single_click);
+
+        LinearLayout singleClick = (LinearLayout) findViewById(R.id.ll_single_click);//单点
         singleClick.setOnClickListener(this);
+
+        LinearLayout start = (LinearLayout) findViewById(R.id.ll_start);//开始
+        start.setOnClickListener(this);
+
+        LinearLayout clear = (LinearLayout) findViewById(R.id.ll_clear);//清空
+        clear.setOnClickListener(this);
+
+        LinearLayout save = (LinearLayout) findViewById(R.id.ll_save);//保存
+        save.setOnClickListener(this);
+
+        MyImageView close = (MyImageView) findViewById(R.id.iv_close);
         close.setOnClickListener(this);
     }
 
@@ -94,20 +81,20 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
                 xInView = event.getX();
                 yInView = event.getY();
                 xDownInScreen = event.getRawX();
-                yDownInScreen = event.getRawY() - getStatusBarHeight();
+                yDownInScreen = event.getRawY();
                 xInScreen = event.getRawX();
-                yInScreen = event.getRawY() - getStatusBarHeight();
+                yInScreen = event.getRawY();
                 break;
             case MotionEvent.ACTION_MOVE:
-                xInScreen = event.getRawX();
-                yInScreen = event.getRawY() - getStatusBarHeight();
-                // 手指移动的时候更新小悬浮窗的位置
-                updateViewPosition();
-                break;
             case MotionEvent.ACTION_UP:
                 // 如果手指离开屏幕时，xDownInScreen和xInScreen相等，且yDownInScreen和yInScreen相等，则视为触发了单击事件。
                 if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
 //                    openBigWindow();
+                }else{
+                    xInScreen = event.getRawX();
+                    yInScreen = event.getRawY() - getStatusBarHeight();
+                    // 手指移动的时候更新小悬浮窗的位置
+                    updateViewPosition();
                 }
                 break;
             default:
@@ -168,11 +155,37 @@ public class FloatWindowSmallView extends LinearLayout implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.iv_close:
-                  MyWindowManager.createDialogWindow(getContext());
+                MyWindowManager.createDialogWindow(getContext(),"确定关闭自动点击控制台吗？",new DialogListener() {
+                    @Override
+                    public void cancel() {
+                    }
+                    @Override
+                    public void commit() {
+                        MyWindowManager.removeSmallWindow(getContext());
+                        MyWindowManager.removeCloseWindow(getContext());
+                        MyWindowManager.removeSingleClickWindow(getContext());
+                    }
+                });
                 break;
             case R.id.ll_single_click:
                 MyWindowManager.createSingleClickWindow(getContext());
                 break;
+            case R.id.ll_clear:
+                MyWindowManager.createDialogWindow(getContext(), "是否清空当前添加的所有触摸点？",new DialogListener() {
+                    @Override
+                    public void cancel() {
+                    }
+                    @Override
+                    public void commit() {
+                        MyWindowManager.removeSingleClickWindow(getContext());
+                    }
+                });
+
+                break;
+            case R.id.ll_start:
+                AlipayForestMonitor.startAlipay(getContext());
+                break;
+
         }
     }
 }

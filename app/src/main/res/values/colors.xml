@@ -76,5 +76,16 @@
     <color name="guideline">#AAFFFFFF</color>
     <color name="corner">@android:color/white</color>
     <color name="surrounding_area">#B0000000</color>
-
+    <color name="fb">#FBFBFB</color>
+    <color name="blue_2">#509A83</color>
+    <color name="black">#000000</color>
+    <color name="f6">#ffb6b6b6</color>
+    <color name="d3">#D3D3D3</color>
+    <color name="aaa">#AAAEB3</color>
+    <color name="ff7">#FF7200</color>
+    <color name="fc">#FC3D32</color>
+    <color name="af">#AFAFAF</color>
+    <color name="c_green">#009C48</color>
+    <color name="ff">#7400FF</color>
+    <color name="f6f6">#F6F6F6</color>
 </resources>

@@ -10,7 +10,11 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        manifestPlaceholders = [
+                //值来自极光开发者平台取得的AppKey
+                JPUSH_APPKEY  : "ed4f7ffa6e4b1464917fb4d3",
+                JPUSH_CHANNEL : "default_developer"
+        ]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -27,11 +31,17 @@ android {
             jniLibs.srcDirs = ['jniLibs']
         }
     }
+
+
     dataBinding {
         enabled = true
     }
 }
-
+repositories{
+    flatDir{
+        dirs 'libs'
+    }
+}
 
 
 dependencies {
@@ -62,4 +72,5 @@ dependencies {
     implementation project(':easeui')
     implementation files('libs/basesclass.aar')
     implementation files('libs/fastShape.aar')
+    implementation (name:'jad-android-5.0.4', ext:'aar')
 }

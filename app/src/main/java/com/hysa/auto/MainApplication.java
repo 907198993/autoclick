@@ -17,7 +17,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
-import com.hysa.auto.service.AutoClickService;
+import com.hysa.auto.service.MyAutoClickService;
 import com.hysa.auto.util.MyUncaughtExceptionHandler;
 import com.hysa.auto.util.ThreadPoolUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -32,15 +32,15 @@ import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import cn.jiguang.ads.nativ.api.JNativeAdApi;
+import cn.jiguang.ads.notify.api.JNotifyAdApi;
+import cn.jiguang.union.ads.base.api.JAdApi;
+import cn.jiguang.union.ads.base.api.JAdConfig;
 import me.goldze.mvvmhabit.base.BaseApplication;
-import me.goldze.mvvmhabit.bus.RxBus;
 import me.goldze.mvvmhabit.utils.KLog;
-import me.goldze.mvvmhabit.utils.SPUtils;
-import static com.hyphenate.easeui.utils.EaseUserUtils.getUserInfo;
 
 public class MainApplication extends Application {
 
@@ -59,6 +59,16 @@ public class MainApplication extends Application {
         super.onCreate();
         mInstance = this;
         BaseApplication.setApplication(this);
+//        //配置
+//        JAdApi.config(this, new JAdConfig.Builder()
+//                // 是否开启日志，默认false
+//                .setLoggerEnable(true)
+//                .build());
+//
+//        // 应用内广告初始化
+//        JNativeAdApi.init(this);
+//        // 通知栏广告初始化
+//        JNotifyAdApi.init(this);
     }
 
     public void init() {
@@ -401,7 +411,7 @@ public class MainApplication extends Application {
     }
 
     public static boolean isStartAccessibilityService(Context context) {
-        String service = context.getApplicationContext().getPackageName() + "/" + AutoClickService.class.getCanonicalName();
+        String service = context.getApplicationContext().getPackageName() + "/" + MyAutoClickService.class.getCanonicalName();
         int ok = 0;
         try {
             ok = Settings.Secure.getInt(context.getApplicationContext().getContentResolver(), Settings.Secure.ACCESSIBILITY_ENABLED);

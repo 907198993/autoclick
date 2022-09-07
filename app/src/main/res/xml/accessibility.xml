@@ -9,4 +9,4 @@
     android:canRetrieveWindowContent="true"
     android:description="@string/my_accessibility_description"
     android:notificationTimeout="100"
-    android:packageNames="com.tencent.mm" />
+    />

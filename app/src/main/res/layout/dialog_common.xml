@@ -1,67 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/rl_close"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="306dp"
-    android:layout_height="wrap_content"
-    android:background="@drawable/shape_white_bg_rduis">
-
-    <ImageView
-        android:id="@+id/ivIcon"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:visibility="gone" />
-
-    <com.hysa.auto.widget.DrawableTextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:my_rl_corner_radius="10dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="#4A333333"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <com.github.customview.MyRelativeLayout
+        android:id="@+id/rl_close"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivIcon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="标题"
-        android:textColor="@color/textMain"
-        android:textSize="18sp" />
+        app:my_rl_corner_radius="10dp"
+        android:paddingBottom="10dp"
+        app:my_rl_solid="@color/white"
+        >
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/tvContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitle"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center"
-        android:lineSpacingMultiplier="1.2"
-        android:text="内容"
-        android:textColor="@color/text99"
-        android:textSize="14sp" />
+        <com.hysa.auto.widget.DrawableTextView
+            android:id="@+id/tvTitle"
+            android:text="是否清空当前添加的所有触摸点"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/ivIcon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/textMain"
+            android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/tvCancel"
-        android:layout_width="153dp"
-        android:layout_height="44dp"
-        android:layout_below="@+id/tvContent"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/shape_bg_gray"
-        android:gravity="center"
-        android:text="取消"
-        android:textColor="@color/textMain"
-        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/tvConfirm"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_below="@+id/tvContent"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@+id/tvCancel"
-        android:background="@drawable/shape_bg_black"
-        android:gravity="center"
-        android:text="确定"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+        <com.github.customview.MyTextView
+            android:id="@+id/tvCancel"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginTop="30dp"
+            app:my_tv_solid="#999999"
+            android:gravity="center"
+            android:layout_marginStart="30dp"
+            app:my_tv_corner_radius="10dp"
+            android:text="取消"
+            android:textColor="@color/textMain"
+            android:textSize="18sp" />
 
-</RelativeLayout>
+        <com.github.customview.MyTextView
+            android:id="@+id/tvConfirm"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentRight="true"
+            app:my_tv_corner_radius="10dp"
+            android:layout_marginEnd="30dp"
+            app:my_tv_solid="@color/black"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </com.github.customview.MyRelativeLayout>
+</LinearLayout>
